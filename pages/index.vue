@@ -6,11 +6,9 @@
     An error occurred :(
       </p>
   <div v-else>
-    <h1>Nuxt Mountains</h1>
-    <div  >
-        <Element v-for="element of posts.elements" :key="element.number" :element="element"/>
+    <div class="grid grid-cols-18 mx-16 mt-16">
+      <Element v-for="element of posts.elements" :key="element.number" :element="element"/>
     </div>
-    <button @click="$fetch">Refresh</button>
   </div>
 </template>
 

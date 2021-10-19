@@ -1,10 +1,12 @@
 <template>
-  <div class="outer relative w-48 h-32 rounded-lg shadow" :style="style">
-    <span
-      class="w-full h-full flex justify-center items-center text-5xl font-black"
-    >
-      {{ element.symbol }}
-    </span>
+  <div class="relative shadow grid-rows-6 px-2" :style="style" :class="classNames">
+     <div class="flex justify-end ">
+       <!-- <span class="text-xs">{{ element.atomic_mass }}</span> -->
+        <span class="text-xl">{{ element.number}}</span>
+      </div>
+       <div class="text-3xl -mt-3">{{ element.symbol}}</div>
+       <div class="text-base">{{ element.name }}</div>
+       <!-- <div>{{ element.electron_configuration_semantic}}</div> -->
   </div>
 </template>
 
@@ -16,9 +18,16 @@ export default {
   computed: {
     style() {
       return {
-        "background-color": '#' + (this.element["cpk-hex"] ?? "dd77ff"),
+        'grid-column': this.element.xpos,
+        'grid-row': this.element.ypos,
       };
     },
+    classNames() {
+        if(this.element.category.includes('unknown')){
+            return 'bg-unknown';
+        }
+        return 'bg-'+this.element.category.replace(/\s+/g, '-');
+    }
   },
 };
 </script>
