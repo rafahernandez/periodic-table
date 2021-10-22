@@ -1,5 +1,5 @@
 <template>
-  <div class="relative shadow grid-rows-6 px-2" :style="style" :class="classNames">
+  <button class="relative shadow grid-rows-6 px-2" :style="style" :class="classNames" @click="$emit('show-element', element)">
      <div class="flex justify-end ">
        <!-- <span class="text-xs">{{ element.atomic_mass }}</span> -->
         <span class="text-xl">{{ element.number}}</span>
@@ -7,7 +7,7 @@
        <div class="text-3xl -mt-3">{{ element.symbol}}</div>
        <div class="text-base">{{ element.name }}</div>
        <!-- <div>{{ element.electron_configuration_semantic}}</div> -->
-  </div>
+  </button>
 </template>
 
 <script>
