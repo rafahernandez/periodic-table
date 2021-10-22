@@ -1,33 +1,77 @@
 <template>
-      <transition name="modal">
-        <div class="fixed z-50 top-0 left-0 w-full h-full bg-black table transition-opacity bg-opacity-70">
-          <div class="table-cell align-middle" @click="$emit('close')">
-            <div class="w-10/12 mx-auto my-0 px-6 py-8 bg-white rounded shadow transition-all" @click.stop>
+  <transition name="modal">
+    <div
+      class="
+        fixed
+        z-50
+        top-0
+        left-0
+        w-full
+        h-full
+        bg-black
+        table
+        transition-opacity
+        bg-opacity-70
+      "
+    >
+      <div class="table-cell align-middle" @click="$emit('close')">
+        <div
+          class="
+            w-10/12
+            mx-auto
+            my-0
+            px-12
+            py-8
+            bg-gray-200
+            rounded
+            shadow
+            transition-all
+            border-2
+            text-center
+          "
+          @click.stop
+        >
+          <div class="mt-0 mx-auto text-4xl">
+            {{ element.name }}
+          </div>
 
-              <div class="mt-0">
-                <slot name="header">
-                 {{ element.name }}
-                </slot>
+          <div class="my-8 flex flex-row gap-4">
+            <div class="w-1/3 bg-gray-300 py-4  rounded-lg">
+              <div>Atomo</div>
+              <div>[[IMAGE]]</div>
+              <div class="flex flex-row">
+                <PartialsDefinition title="Número" :description="element.number"/>
+                <PartialsDefinition title="Masa" :description="element.atomic_mass"/>
               </div>
-
-              <div class="my-8">
-                <slot name="body">
-                  default body
-                </slot>
-              </div>
-
-              <div class="modal-footer">
-                <slot name="footer">
-                  default footer
-                  <button class="float-right" @click="$emit('close')">
-                    OK
-                  </button>
-                </slot>
+              <div class="flex flex-row">
+                <PartialsDefinition title="Configuración" :description="element.electron_configuration_semantic"/>
+                <PartialsDefinition title="Densidad" :description="element.density"/>
               </div>
             </div>
+            <div class="w-2/3 bg-gray-300 py-4 rounded-lg">
+              <div class="mb-4">Propiedades</div>
+              <div class="grid grid-cols-3 gap-y-4 px-8 justify-items-center">
+                  <PartialsDefinition title="Apariencia" :description="element.appearance"/>
+                  <PartialsDefinition title="Categoría" :description="element.category"/>
+                  <PartialsDefinition title="Descubierto por" :description="element.discovered_by"/>
+                  <PartialsDefinition title="Fase" :description="element.phase"/>
+                  <PartialsDefinition title="CPK" :description="element['cpk-hex']"/>
+              </div>
+              <div></div>
+            </div>
+          </div>
+
+          <div class="my-8 bg-gray-300 rounded-lg">
+            <div class="py-4 px-8">{{ element.summary }}</div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="" @click="$emit('close')">CERRAR</button>
           </div>
         </div>
-      </transition>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -40,7 +84,6 @@ export default {
 </script>
 
 <style scoped>
-
 /*
  * The following styles are auto-applied to elements with
  * transition="modal" when their visibility is toggled
@@ -63,5 +106,4 @@ export default {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-
 </style>

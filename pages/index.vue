@@ -14,7 +14,7 @@ export default {
   data: () => ({
     data: elements,
     showModal: false,
-    modalValue: null
+    modalValue: null,
   }),
     methods: {
       showElement: function (element){
