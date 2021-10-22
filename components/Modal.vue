@@ -36,26 +36,51 @@
           </div>
 
           <div class="my-8 flex flex-row gap-4">
-            <div class="w-1/3 bg-gray-300 py-4  rounded-lg">
-              <div>Atomo</div>
-              <div>[[IMAGE]]</div>
+            <div class="w-1/3 bg-gray-300 py-4 rounded-lg">
+              <div>Atómo</div>
+              <!-- <chemical-element-visualisation :symbol="element.symbol.toLowerCase()"></chemical-element-visualisation> -->
+              <div id="bohr-model-container" class="w-64 h-64"></div>
               <div class="flex flex-row">
-                <PartialsDefinition title="Número" :description="element.number"/>
-                <PartialsDefinition title="Masa" :description="element.atomic_mass"/>
+                <PartialsDefinition
+                  title="Número"
+                  :description="element.number"
+                />
+                <PartialsDefinition
+                  title="Masa"
+                  :description="element.atomic_mass"
+                />
               </div>
               <div class="flex flex-row">
-                <PartialsDefinition title="Configuración" :description="element.electron_configuration_semantic"/>
-                <PartialsDefinition title="Densidad" :description="element.density"/>
+                <PartialsDefinition
+                  title="Configuración"
+                  :description="element.electron_configuration_semantic"
+                />
+                <PartialsDefinition
+                  title="Densidad"
+                  :description="element.density"
+                />
               </div>
             </div>
             <div class="w-2/3 bg-gray-300 py-4 rounded-lg">
               <div class="mb-4">Propiedades</div>
               <div class="grid grid-cols-3 gap-y-4 px-8 justify-items-center">
-                  <PartialsDefinition title="Apariencia" :description="element.appearance"/>
-                  <PartialsDefinition title="Categoría" :description="element.category"/>
-                  <PartialsDefinition title="Descubierto por" :description="element.discovered_by"/>
-                  <PartialsDefinition title="Fase" :description="element.phase"/>
-                  <PartialsDefinition title="CPK" :description="element['cpk-hex']"/>
+                <PartialsDefinition
+                  title="Apariencia"
+                  :description="element.appearance"
+                />
+                <PartialsDefinition
+                  title="Categoría"
+                  :description="element.category"
+                />
+                <PartialsDefinition
+                  title="Descubierto por"
+                  :description="element.discovered_by"
+                />
+                <PartialsDefinition title="Fase" :description="element.phase" />
+                <PartialsDefinition
+                  title="CPK"
+                  :description="element['cpk-hex']"
+                />
               </div>
               <div></div>
             </div>
@@ -66,7 +91,12 @@
           </div>
 
           <div class="modal-footer">
-            <button class="" @click="$emit('close')">CERRAR</button>
+            <button
+              class="border-2 border-gray-400 px-4 py-2"
+              @click="$emit('close')"
+            >
+              CERRAR
+            </button>
           </div>
         </div>
       </div>
@@ -80,19 +110,33 @@ export default {
     element: {},
   },
   computed: {},
+  mounted() {
+    var atomicConfig = {
+      containerId: "#bohr-model-container",
+      numElectrons: this.element.number,
+      idNumber: this.element.number,
+      nucleusColor: "#1974C3",
+      electronColor: "#" + this.element["cpk-hex"],
+      animationTime: 1000,
+      //rotateConfig: {speed: 50, clockwise: true},
+      nucleusRadius: 45,
+      symbolOffset: 15,
+      orbitalRotationConfig: {
+        // Invokes orbital rotations at initialization
+        pattern: {
+          alternating: true, // Alternate orbital direction
+          clockwise: true,
+          preset: "random", // String to set pattern (see Features section)
+        },
+      },
+    };
+
+    var myAtom = new Atom(atomicConfig);
+  },
 };
 </script>
 
 <style scoped>
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
 .modal-enter {
   opacity: 0;
 }

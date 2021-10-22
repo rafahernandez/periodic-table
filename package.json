@@ -13,6 +13,8 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
+    "atomic-bohr-model": "^1.0.91",
+    "chemical-element-visualisation": "^2.0.3",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7"
   },
