@@ -1,7 +1,7 @@
 <template>
-<div>
+<div class="overflow-x-auto">
   <Modal v-if="showModal" @close="showModal = false" :element="modalValue"/>
-    <div class="grid grid-cols-18 mx-16 mt-16">
+    <div class="grid grid-cols-18 mx-4 my-4 w-100">
       <Element v-for="element of data.elements" :key="element.number" :element="element" @show-element="showElement"/>
     </div>
 </div>

@@ -20,8 +20,8 @@
             w-10/12
             mx-auto
             my-0
-            px-12
-            py-8
+            px-2
+            py-2
             bg-gray-200
             rounded
             shadow

@@ -5,7 +5,7 @@
         <span class="text-xl">{{ element.number}}</span>
       </div>
        <div class="text-3xl -mt-3">{{ element.symbol}}</div>
-       <div class="text-base">{{ element.name }}</div>
+       <div class="text-sm">{{ element.name }}</div>
        <!-- <div>{{ element.electron_configuration_semantic}}</div> -->
   </button>
 </template>

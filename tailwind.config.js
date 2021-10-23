@@ -19,7 +19,12 @@ module.exports = {
         'lanthanide': '#7147CD',
         'actinide': '#CC47A0',
         'unknown': '#9E9D9B',
-       })
+       }),
+        spacing: {
+          '100': '100rem',
+          '120': '120rem',
+          '140': '140rem',
+        }
     },
   },
   variants: {
