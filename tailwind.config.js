@@ -1,5 +1,19 @@
 module.exports = {
-  purge: [],
+  purge: {
+    safelist: [
+      'bg-diatomic-nonmetal',
+      'bg-noble-gas',
+      'bg-alkali-metal',
+      'bg-alkaline-earth-metal',
+      'bg-metalloid',
+      'bg-polyatomic-nonmetal',
+      'bg-transition-metal',
+      'bg-post-transition-metal',
+      'bg-lanthanide',
+      'bg-actinide',
+      'bg-unknown'
+    ]
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
