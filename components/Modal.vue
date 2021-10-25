@@ -17,8 +17,8 @@
       <div class="table-cell align-middle" @click="$emit('close')">
         <div
           class="
-            w-10/12
-            mx-auto
+            w-full
+            h-full
             my-0
             px-2
             py-2
@@ -28,19 +28,24 @@
             transition-all
             border-2
             text-center
+            overflow-y-scroll
           "
           @click.stop
         >
+          <div class="w-full align-middle text-left text-sm">
+            <button class="text-left" @click="$emit('close')">
+              &lt; Regresar
+            </button>
+          </div>
           <div class="mt-0 mx-auto text-4xl">
             {{ element.name }}
           </div>
 
+          <div id="bohr-model-container" class="w-64 h-64 -mt-4 mx-auto"></div>
+
           <div class="my-8 flex flex-row gap-4">
-            <div class="w-1/3 bg-gray-300 py-4 rounded-lg">
-              <div>Atómo</div>
-              <!-- <chemical-element-visualisation :symbol="element.symbol.toLowerCase()"></chemical-element-visualisation> -->
-              <div id="bohr-model-container" class="w-64 h-64"></div>
-              <div class="flex flex-row">
+            <div class="w-full bg-gray-300 py-4 rounded-lg">
+              <div class="grid grid-cols-4 gap-y-2">
                 <PartialsDefinition
                   title="Número"
                   :description="element.number"
@@ -49,8 +54,6 @@
                   title="Masa"
                   :description="element.atomic_mass"
                 />
-              </div>
-              <div class="flex flex-row">
                 <PartialsDefinition
                   title="Configuración"
                   :description="element.electron_configuration_semantic"
@@ -59,11 +62,6 @@
                   title="Densidad"
                   :description="element.density"
                 />
-              </div>
-            </div>
-            <div class="w-2/3 bg-gray-300 py-4 rounded-lg">
-              <div class="mb-4">Propiedades</div>
-              <div class="grid grid-cols-3 gap-y-4 px-8 justify-items-center">
                 <PartialsDefinition
                   title="Apariencia"
                   :description="element.appearance"
@@ -82,7 +80,6 @@
                   :description="element['cpk-hex']"
                 />
               </div>
-              <div></div>
             </div>
           </div>
 
@@ -90,14 +87,7 @@
             <div class="py-4 px-8">{{ element.summary }}</div>
           </div>
 
-          <div class="modal-footer">
-            <button
-              class="border-2 border-gray-400 px-4 py-2"
-              @click="$emit('close')"
-            >
-              CERRAR
-            </button>
-          </div>
+          <div class="modal-footer"></div>
         </div>
       </div>
     </div>
@@ -116,11 +106,11 @@ export default {
       numElectrons: this.element.number,
       idNumber: this.element.number,
       nucleusColor: "#1974C3",
-      electronColor: "#" + this.element["cpk-hex"],
+      electronColor: "#000",
       animationTime: 1000,
       //rotateConfig: {speed: 50, clockwise: true},
-      nucleusRadius: 45,
-      symbolOffset: 15,
+      nucleusRadius: 30,
+      symbolOffset: 10,
       orbitalRotationConfig: {
         // Invokes orbital rotations at initialization
         pattern: {
